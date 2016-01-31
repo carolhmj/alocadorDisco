@@ -9,7 +9,7 @@ class AlocadorLRU(AlocadorDisco):
 	def __init__(self, referencias, nPag):
 		super(AlocadorLRU, self).__init__(referencias, nPag)
 		#print self.referencias
-		self.nome = "OPT"
+		self.nome = "ALOCADOR LRU"
 	def executar(self):
 		
 		quantidadePaginasReferenciadas = len(Counter(self.referencias).keys())
@@ -51,9 +51,3 @@ class AlocadorLRU(AlocadorDisco):
 		self.historiaPaginas = historiaPaginas
 		self.nTotalReferencias = len(self.referencias) 		
 
-
-	def escreverInformacoes(self, saida):
-		"""Escreve o nome aqui"""
-
-		"""Continua"""
-		super(AlocadorLRU, self).escreverInformacoes(saida)
