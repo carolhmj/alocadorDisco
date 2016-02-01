@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import sys
 from alocadorLRU import AlocadorLRU
 from inputReader import inputReader

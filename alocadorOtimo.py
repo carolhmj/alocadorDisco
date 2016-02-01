@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from collections import Counter
 from alocador import AlocadorDisco
 
@@ -43,7 +46,7 @@ class AlocadorOtimo(AlocadorDisco):
 					nPageFaults = nPageFaults + 1
 					paginaOtima = 0
 					for i in range(1, self.nPag):
-						if (buscarPrimeiraOcorrencia(paginasMemoria[i],timeCounter) > buscarPrimeiraOcorrencia(paginaMemoria[paginaOtima],timeCounter))
+						if (self.buscarPrimeiraOcorrencia(paginasMemoria[i],timeCounter) > self.buscarPrimeiraOcorrencia(paginaMemoria[paginaOtima],timeCounter)):
 							paginaOtima = i
 					paginasMemoria[patinaOtima] = ref
 
