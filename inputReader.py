@@ -11,12 +11,10 @@ class inputReader():
 
 	def executar(self): 
 		r = []
-		line = ""
-		try:
-		    reader = open(self.arquivo, 'r')
-		    line = reader.readline()	
-		finally:
-			reader.close()
+		with open(self.arquivo, 'r') as reader:
+			line = reader.readline()
 			r = line.split(',')
 			r = [int(i) for i in r]
-			return r
+		
+		return r
+			

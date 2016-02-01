@@ -12,10 +12,12 @@ class AlocadorLRU(AlocadorDisco):
 		self.nome = "ALOCADOR LRU"
 	def executar(self):
 		
-		quantidadePaginasReferenciadas = len(Counter(self.referencias).keys())
+		paginasReferenciadas = Counter(self.referencias).keys()
+		quantidadePaginasReferenciadas = len(paginasReferenciadas)
 		#print quantidadePaginasReferenciadas
 		#Guarda o instante da referência mais recente de cada página 
-		referenciaMaisRecente = [0 for i in range(quantidadePaginasReferenciadas)]
+		referenciaMaisRecente = dict.fromkeys(paginasReferenciadas, 0)
+		
 		#Guarda as páginas que estão em memória
 		paginasMemoria = []
 		#Conta o número total de page faults
@@ -26,7 +28,7 @@ class AlocadorLRU(AlocadorDisco):
 		for ref in self.referencias:
 			#print "REF: " + str(ref)
 			timeCounter = timeCounter + 1
-			referenciaMaisRecente[ref-1] = timeCounter
+			referenciaMaisRecente[ref] = timeCounter
 
 			#As referências iniciais todas causam page fault
 			if timeCounter <= self.nPag:
@@ -38,7 +40,7 @@ class AlocadorLRU(AlocadorDisco):
 					#Página que vai ser substituída
 					LRUPage = 0
 					for i in range(1, self.nPag):
-						if referenciaMaisRecente[paginasMemoria[i]-1] < referenciaMaisRecente[paginasMemoria[LRUPage]-1]:
+						if referenciaMaisRecente[paginasMemoria[i]] < referenciaMaisRecente[paginasMemoria[LRUPage]]:
 							LRUPage = i
 					#print "LRUPAGE: " + str(LRUPage)
 					paginasMemoria[LRUPage] = ref
